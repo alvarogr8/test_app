@@ -1,0 +1,20 @@
+<div class="guest-list-container">
+  <h1>Guests</h1>
+  <div class="search-container"><input type="text" placeholder="Search"></div>
+  <div class="guest-list-table">
+    <div class="guest-list-table-header">
+      <div *ngFor="let column of columnList" class="header-cell">{{column.title}}</div>
+    </div>
+    <div class="guest-list-table-content">
+      <div *ngFor="let item of data; let i = index" class="content-row" [ngClass]="{cssClass: expression}">
+        <div *ngFor="let column of columnList" class="content-cell">
+          <div *ngIf="column.type === 'text'">{{item[column.key]}}</div>
+          <div *ngIf="column.type === 'date'">{{item[column.key] | date: 'yyyy/MM/dd'}}</div>
+          <div *ngIf="column.type === 'status'"
+              class="status"
+              [ngClass]="{'active': item[column.key]}">{{item[column.key] ? 'Active' : 'Invitation Sent'}}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

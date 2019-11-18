@@ -1,0 +1,29 @@
+/* You can add global styles to this file, and also import other style files */
+body {
+  margin: 0;
+  font-family: Roboto, 'sans-serif';
+}
+
+input {
+  outline: none;
+  &[type='text'] {
+    padding: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+  }
+}
+
+button {
+  border-radius: 5px;
+  outline: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
+
+h1 {
+  font-weight: lighter;
+  padding-bottom: 5px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid lightgrey;
+}

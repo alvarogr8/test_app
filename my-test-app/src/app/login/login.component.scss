@@ -1,0 +1,42 @@
+@import '../../assets/color-definitions.scss';
+
+.background-container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $dark-blue;
+  .login-frame {
+    border: 10px double $white;
+    border-radius: 5px;
+    .login-container {
+      color: $grey;
+      background: $white;
+      padding: 10px;
+      .login-header {
+        text-align: center;
+        padding: 20px 20px 0 20px;
+      }
+      .login-form {
+        input {
+          margin-top: 10px;
+        }
+        .error {
+          color: $red;
+          font-size: smaller;
+          display: block;
+        }
+      }
+      .login-submit {
+        margin-top: 10px;
+        button {
+          width: 100%;
+          color: $white;
+          background: $green;
+        }
+      }
+    }
+  }
+}
