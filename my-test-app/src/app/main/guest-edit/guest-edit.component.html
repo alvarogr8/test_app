@@ -1,18 +1,29 @@
 <div class="guest-edit-container">
-  <h1>Edit Guests</h1>
-  <div class="guest-edit-form">
+  <h1>{{title}} Guests</h1>
+  <div [formGroup]="form" class="guest-edit-form">
     <div class="input-container">
       <label for="">Name</label>
-      <input type="text" placeholder="Client Name">
+      <input formControlName="name" type="text" placeholder="Client Name">
+      <span *ngIf="form['controls'].name.dirty && form['controls'].name.invalid" class="error">Name required</span>
     </div>
     <div class="input-container">
       <label for="">Email</label>
-      <input type="text" placeholder="example@email.com">
+      <input formControlName="email" type="text" placeholder="example@email.com">
+      <span *ngIf="form['controls'].email.dirty && form['controls'].email.invalid" class="error">Email required</span>
     </div>
     <div class="input-container">
-      <label for="">Status</label>
-      <input type="text" placeholder="Status">
+      <label for="status">Status</label>
+      <select formControlName="status" name="status" [ngClass]="{'green': form.controls.status.value === true, 'blue': form.controls.status.value === false}">
+        <option [ngValue]="true">Active</option>
+        <option [ngValue]="false">Invitation Sent</option>
+      </select>
+      <!-- <input formControlName="status" type="text" placeholder="Status"> -->
     </div>
   </div>
+  <div class="guest-edit-buttons">
+    <button [routerLink]="''">Cancel</button>
+    <button (click)="onClickModify()" class="confirm" [disabled]="form.pristine">{{title}}</button>
+  </div>
+  <span *ngIf="isWarningShown" class="error">Name and email are required</span>
 </div>
   

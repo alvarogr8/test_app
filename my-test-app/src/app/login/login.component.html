@@ -1,23 +1,23 @@
 <div class="background-container">
   <div class="login-frame">
     <div class="login-container">
-      <div class="login-header">Sign In</div>
-      <div class="login-form">
+      <h3 class="login-header">SIGN IN</h3>
+      <div [formGroup]="form" class="login-form">
         <div>
-          <input type="text" name="userName" placeholder="Username">
-          <span class="error">Username does not exist</span>
+          <input formControlName="username" type="text" name="userName" placeholder="Username" (keydown.enter)="onClickLogin()">
+          <span *ngIf="form.controls.username.dirty && form.controls.username.invalid" class="error">Incorrect username</span>
         </div>
         <div>
-          <input type="text" name="password" placeholder="Password">
-          <span class="error">Incorrect password</span>
+          <input formControlName="password" type="password" name="password" placeholder="Password" (keydown.enter)="onClickLogin()">
+          <span *ngIf="form.controls.password.dirty && form.controls.password.invalid" class="error">Incorrect password</span>
         </div>
-        <div>
-          <input type="checkbox" name="rememberMe" placeholder="Password">
-          <label for="rememberMe">Remember me</label>
-        </div>      
+      </div>
+      <div style="margin-top: 10px;">
+        <input type="checkbox" name="rememberMe" placeholder="Password" [(ngModel)]="isRememberMe">
+        <label for="rememberMe">Remember me</label>
       </div>
       <div class="login-submit">
-        <button>Login</button>
+        <button (click)="onClickLogin()" [disabled]="form.pristine">Login</button>
       </div>
     </div>
   </div>

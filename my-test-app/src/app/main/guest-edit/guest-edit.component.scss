@@ -3,11 +3,41 @@
 .guest-edit-container {
   .guest-edit-form {
     display: flex;
+    flex-wrap: wrap;
     .input-container {
       margin: 5px;
       label {
         margin-bottom: 5px;
         display: block;
+      }
+      select {
+        &.blue {
+          background: $light-blue;
+          color: $white;
+        }
+        &.green {
+          color: $white;
+          background: $green;
+        }
+        option {
+          color: $dark-blue;
+          background: $white;
+        }
+      }
+    }
+  }
+  .error {
+    color: $red;
+    font-size: smaller;
+    display: block;
+  }
+  .guest-edit-buttons {
+    margin-top: 5px;
+    button {
+      margin-left: 5px;
+      &.confirm:not(:disabled) {
+        background: $green;
+        color: $white;
       }
     }
   }

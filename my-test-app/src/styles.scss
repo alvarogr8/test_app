@@ -1,29 +1,53 @@
 /* You can add global styles to this file, and also import other style files */
 body {
   margin: 0;
-  font-family: Roboto, 'sans-serif';
+  font-family: 'Roboto', 'sans-serif';
+  font-weight: 300;
 }
 
 input {
   outline: none;
-  &[type='text'] {
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 15px;
+  &[type='text'], &[type='password'] {
     padding: 10px;
     border: 1px solid lightgrey;
     border-radius: 5px;
   }
 }
 
+select {
+  outline: none;
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 15px;
+  padding: 9px;
+  border: 1px solid lightgrey;
+  border-radius: 5px;
+  option {
+    padding: 5px;
+  }
+}
+
 button {
+  font-family: 'Roboto', 'sans-serif';
+  font-size: 15px;
   border-radius: 5px;
   outline: none;
   border: none;
   padding: 5px;
   cursor: pointer;
+  &:disabled {
+    background: lightgrey;
+  }
 }
 
 h1 {
-  font-weight: lighter;
+  font-weight: 350;
   padding-bottom: 5px;
   margin-bottom: 15px;
   border-bottom: 1px solid lightgrey;
+}
+
+i {
+  margin: 0 5px;
 }

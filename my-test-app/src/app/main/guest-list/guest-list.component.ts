@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { GuestService } from '../services/guest.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-guest-list',
@@ -7,27 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GuestListComponent implements OnInit {
 
+  data = [];
   columnList = [
-    {title: 'Name', key: 'name', type: 'text'},
-    {title: 'Email', key: 'email', type: 'text'},
-    {title: 'Last Operation', key: 'lastOperation', type: 'date'},
-    {title: 'Status', key: 'status', type: 'status'},
+    {title: 'Name', key: 'name', type: 'text', width: '25%'},
+    {title: 'Email', key: 'email', type: 'text', width: '25%'},
+    {title: 'Last Operation', key: 'lastOperation', type: 'date', width: '25%'},
+    {title: 'Status', key: 'status', type: 'status', width: '25%'},
   ];
+  searchName: string;
 
-  data = [
-    {name: 'user 1', email: 'email@example.com', lastOperation: new Date(), status: true},
-    {name: 'user 2', email: 'email@example.com', lastOperation: new Date(), status: false},
-    {name: 'user 3', email: 'email@example.com', lastOperation: null, status: false},
-    {name: 'user 4', email: 'email@example.com', lastOperation: new Date(), status: true},
-    {name: 'user 5', email: 'email@example.com', lastOperation: new Date(), status: true},
-    {name: 'user 6', email: 'email@example.com', lastOperation: null, status: false},
-    {name: 'user 7', email: 'email@example.com', lastOperation: new Date(), status: false},
-    {name: 'user 8', email: 'email@example.com', lastOperation: new Date(), status: true},
-  ];
-
-  constructor() { }
+  constructor(
+    public router: Router,
+    public guestService: GuestService
+  ) { }
 
   ngOnInit() {
+    this.guestService.getData().subscribe(
+      res => this.data.push(...res),
+      error => alert('Request failed' + error)
+    );
   }
 
+  onClickEdit(item): void {
+    this.router.navigate(['edit', item.id]);
+  }
+
+  onSearchChange(event): void {
+    this.data = this.guestService.data.filter(v => v.name.includes(event));
+  }
 }

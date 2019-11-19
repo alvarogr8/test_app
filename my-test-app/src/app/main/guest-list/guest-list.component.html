@@ -1,18 +1,30 @@
 <div class="guest-list-container">
   <h1>Guests</h1>
-  <div class="search-container"><input type="text" placeholder="Search"></div>
+  <button [routerLink]="['/edit']"><i class="fa fa-plus"></i>Create Account</button>
+  <div class="search-container">
+    <input type="text" placeholder="Search" [ngModel]="searchName" (input)="onSearchChange($event.target.value)">
+  </div>
   <div class="guest-list-table">
     <div class="guest-list-table-header">
-      <div *ngFor="let column of columnList" class="header-cell">{{column.title}}</div>
+      <div *ngFor="let column of columnList" class="header-cell" [style.width]="column.width" title="{{column.title}}">
+        {{column.title}}
+      </div>
     </div>
-    <div class="guest-list-table-content">
-      <div *ngFor="let item of data; let i = index" class="content-row" [ngClass]="{cssClass: expression}">
-        <div *ngFor="let column of columnList" class="content-cell">
-          <div *ngIf="column.type === 'text'">{{item[column.key]}}</div>
-          <div *ngIf="column.type === 'date'">{{item[column.key] | date: 'yyyy/MM/dd'}}</div>
+    <div class="guest-list-table-body">
+      <div *ngFor="let item of data; let i = index" class="body-row" [ngClass]="{cssClass: expression}" (click)="onClickEdit(item)">
+        <div *ngFor="let column of columnList" class="body-cell" [style.width]="column.width">
+          <div class="body-cell-content" *ngIf="column.type === 'text'" title="{{item[column.key]}}">
+            {{item[column.key]}}
+          </div>
+          <div class="body-cell-content" *ngIf="column.type === 'date'" title="{{item[column.key] | date: 'yyyy/MM/dd'}}">
+            {{item[column.key] | date: 'yyyy/MM/dd'}}
+          </div>
           <div *ngIf="column.type === 'status'"
-              class="status"
-              [ngClass]="{'active': item[column.key]}">{{item[column.key] ? 'Active' : 'Invitation Sent'}}</div>
+                class="status body-cell-content"
+                title="{{item[column.key] ? 'Active' : 'Invitation Sent'}}"
+                [ngClass]="{'active': item[column.key]}">
+            {{item[column.key] ? 'Active' : 'Invitation Sent'}}
+          </div>
         </div>
       </div>
     </div>

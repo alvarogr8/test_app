@@ -1,6 +1,14 @@
 @import '../../../assets/color-definitions.scss';
 
 .guest-list-container {
+  position: relative;
+  button {
+    position: absolute;
+    top: 10px;
+    right: 0;
+    color: $white;
+    background: $dark-blue;
+  }
   .search-container {
     text-align: end;
     margin-bottom: 10px;
@@ -14,28 +22,34 @@
         border-bottom: 1px solid $grey;
         border-right: 1px solid $grey;
         padding: 10px;
-        text-align: center;
-        flex: 1 1 100%;
         font-weight: bolder;
+        white-space: nowrap;
       }
     }
-    .guest-list-table-content {
-      .content-row {
+    .guest-list-table-body {
+      .body-row {
         display: flex;
+        cursor: pointer;
+        &:hover {
+          font-weight: 500;
+        }
         &:nth-child(odd) {
           background: $light-grey;
         }
-        .content-cell {
+        .body-cell {
           border-bottom: 1px solid $grey;
           border-right: 1px solid $grey;
           padding: 10px;
-          text-align: center;
-          flex: 1 1 100%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          overflow: hidden;
           .status {
             padding: 3px;
             border-radius: 3px;
             color: $white;
             background: $light-blue;
+            white-space: nowrap;
           }
           .active {
             background: $green;
@@ -44,4 +58,35 @@
       }
     }
   }
+}
+@media only screen and (min-width: 769px) {
+  .header-cell, .body-cell-content {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    text-align: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .header-cell, .body-cell-content {
+    overflow-x: auto;
+    scrollbar-width: thin;
+    width: 100%;
+  }
+  
+}
+
+/* width */
+::-webkit-scrollbar {
+  height: 2px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $grey; 
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $dark-blue; 
 }
